@@ -475,6 +475,7 @@ function showOne(showSide) {
 }
 
 setInterval(function() {
+    console.log("test");
     if (document.querySelector('header[data-testid="chatlist-header"]')) {
         document.querySelector('header[data-testid="chatlist-header"]').parentElement.style.maxWidth = "100vw";
     }
