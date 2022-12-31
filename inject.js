@@ -440,14 +440,13 @@ function showOne(showSide) {
     if (side) {
         side = side.parentElement;
         if (side) {
-            side.style.width = "100vw";
-            side.style.flex = "none";
-            side.style.display = showSide ? "block": "none";
+            if (showSide){
+                Android.left();
+            } else{
+                Android.right();
+            }
             let main = side.nextSibling;
             if (main) {
-                main.style.flex = "none";
-                main.style.width = "100vw";
-                main.style.display = showSide ? "none" : "block";
                 if (contacts != document.getElementById("pane-side")) {
                     contacts = document.getElementById("pane-side");
                     //contacts.addEventListener('click', function(event) {
