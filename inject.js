@@ -385,6 +385,7 @@ SingleTapDetector.prototype.handleEvent = function(event) {
 };
 
 SingleTapDetector.prototype.onTouchStart = function(event) {
+    console.log("onTouchStart");
     this.element.addEventListener('touchend', this, false);
     document.body.addEventListener('touchmove', this, false);
 
@@ -394,11 +395,14 @@ SingleTapDetector.prototype.onTouchStart = function(event) {
 };
 
 SingleTapDetector.prototype.onTouchMove = function(event) {
+    console.log("onTouchMove");
     this.currentX = event.touches[0].clientX;
     this.currentY = event.touches[0].clientY;
 };
 
 SingleTapDetector.prototype.onTouchEnd = function(event) {
+        console.log("onToucEnd");
+
     var that = this;
 
     // Has there been one or more taps in this sequence already?
@@ -432,20 +436,27 @@ SingleTapDetector.prototype.onTouchEnd = function(event) {
 let contacts = null;
 
 function showOne(showSide) {
+
     let app = document.getElementsByClassName("app-wrapper-web")[0];
-    if (app) {
-        app.style.overflowX = "hidden";
-    }
+    // if (app) {
+    //     app.style.overflowX = "hidden";
+    // }
     let side = document.getElementById("side");
     if (side) {
         side = side.parentElement;
         if (side) {
-            if (showSide){
-                Android.left();
-            } else{
-                Android.right();
-            }
             let main = side.nextSibling;
+
+            if (showSide){
+                // Android.left();
+                // window.scrollTo(0,0);
+                side.scrollIntoView();
+                console.log("left");
+            } else{
+                main.scrollIntoView();
+                console.log("right");
+
+            }
             if (main) {
                 if (contacts != document.getElementById("pane-side")) {
                     contacts = document.getElementById("pane-side");
@@ -474,7 +485,6 @@ function showOne(showSide) {
 }
 
 setInterval(function() {
-    console.log("test");
     if (document.querySelector('header[data-testid="chatlist-header"]')) {
         document.querySelector('header[data-testid="chatlist-header"]').parentElement.style.maxWidth = "100vw";
     }
@@ -494,10 +504,12 @@ setInterval(function() {
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        // meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
         var head = document.getElementsByTagName('head')[0];
         head.appendChild(meta);
     }
     if (document.querySelectorAll('[data-icon="back"]').length == 2 && document.getElementById('download_status') == null) {
+        console.log("back");
         const attributeSelector = "src*='blob:https://web.whatsapp.com'";
         let imgStatus = document.querySelector(`img[${attributeSelector}]`);
         let vidStatus = document.querySelector(`video[${attributeSelector}]`);
