@@ -539,7 +539,7 @@ function showOne(showSide) {
     if (app) {
         app.style.overflowX = "hidden";
     }
-    
+
     if (!showSide) {
         let msgPanel = document.querySelector('div[data-testid="conversation-panel-messages"]');
         if (msgPanel != null) {
@@ -732,7 +732,6 @@ setInterval(function () {
                 vidStatus.parentElement.prepend(link);
             } else {
                 link.href = imgStatus.getAttribute('src') + "?" + fname;
-                ;
                 link.download = fname + ".jpeg";
                 imgStatus.parentElement.prepend(link);
             }
